@@ -1,0 +1,25 @@
+:Base nldfiles.hlp
+:Title  NLDFileSearch
+:Index Index for nldfiles.hlp=nldfiles.hlp
+1 NLDFileSearch
+2 About NLDFileSearch=IDH_NLDFileSearch_Project
+2 Packages
+3 Units
+2 Alphabetical Object and Component Listing
+2 TNLDCustomFileSearch=IDH_TNLDCustomFileSearch
+2 TNLDEnumFiles=IDH_TNLDEnumFiles
+2 TNLDFileSearch=IDH_TNLDFileSearch
+2 TNLDStringsFileSearch=IDH_TNLDStringsFileSearch
+2 Alphabetical Object and Component Listing, By Unit
+3 NLDFileSearch
+3 TNLDCustomFileSearch=IDH_TNLDCustomFileSearch
+3 TNLDEnumFiles=IDH_TNLDEnumFiles
+3 TNLDFileSearch=IDH_TNLDFileSearch
+3 TNLDStringsFileSearch=IDH_TNLDStringsFileSearch
+2 Alphabetical Routine Listing
+2 NLDEnumFiles=IDH_NLDEnumFiles_100056
+2 NLDGetFiles=IDH_NLDGetFiles_100057
+2 Alphabetical Routine Listing, By Unit
+3 NLDFileSearch
+3 NLDEnumFiles=IDH_NLDEnumFiles_100056
+3 NLDGetFiles=IDH_NLDGetFiles_100057
