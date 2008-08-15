@@ -326,52 +326,52 @@ type
   {
     :$ Search a folder using a callback procedure
 
-    :: Specify the path (including trailing backslash) + optional mask in the
-    :: Path parameter. The specified Callback procedure will be called for each
+    :: Specify the APath (including trailing backslash) + optional mask in the
+    :: APath parameter. The specified Callback procedure will be called for each
     :: encountered file.
   }
-  procedure NLDEnumFiles(Path: string; CallBack: TNLDFoundFileProc;
-                         Options: TFSOptions); overload;
+  procedure NLDEnumFiles(APath: string; CallBack: TNLDFoundFileProc; AOptions:
+      TFSOptions); overload;
 
   {
     :$ Search a folder using an extended callback procedure
 
-    :: Specify the path (including trailing backslash) + optional mask in the
-    :: Path parameter. The specified Callback procedure will be called for each
+    :: Specify the APath (including trailing backslash) + optional mask in the
+    :: APath parameter. The specified Callback procedure will be called for each
     :: encountered file.
   }
-  procedure NLDEnumFiles(Path: string; CallBack: TNLDFoundFileExProc;
-                         Options: TFSOptions); overload;
+  procedure NLDEnumFiles(APath: string; CallBack: TNLDFoundFileExProc; AOptions:
+      TFSOptions); overload;
 
 
   {
     :$ Search a folder using a method event
 
-    :: Specify the path (including trailing backslash) + optional mask in the
-    :: Path parameter. The specified Callback event will be called for each
+    :: Specify the APath (including trailing backslash) + optional mask in the
+    :: APath parameter. The specified Callback event will be called for each
     :: encountered file.
   }
-  procedure NLDEnumFiles(Path: string; CallBack: TNLDFoundFileEvent;
-                         Options: TFSOptions); overload;
+  procedure NLDEnumFiles(APath: string; CallBack: TNLDFoundFileEvent; AOptions:
+      TFSOptions); overload;
 
   {
     :$ Search a folder using an extended method event
 
-    :: Specify the path (including trailing backslash) + optional mask in the
-    :: Path parameter. The specified Callback event will be called for each
+    :: Specify the APath (including trailing backslash) + optional mask in the
+    :: APath parameter. The specified Callback event will be called for each
     :: encountered file.
   }
-  procedure NLDEnumFiles(Path: string; CallBack: TNLDFoundFileExEvent;
-                         Options: TFSOptions); overload;
+  procedure NLDEnumFiles(APath: string; CallBack: TNLDFoundFileExEvent; AOptions:
+      TFSOptions); overload;
 
   {
     :$ Search a folder and write all files to the specified list
 
-    :: Specify the path (including trailing backslash) + optional mask in the
-    :: Path parameter. The specified TStrings descendant will be filled
+    :: Specify the APath (including trailing backslash) + optional mask in the
+    :: APath parameter. The specified TStrings descendant will be filled
     :: with the found files.
   }
-  procedure NLDGetFiles(Path: string; List: TStrings; Options: TFSOptions);
+  procedure NLDGetFiles(APath: string; List: TStrings; AOptions: TFSOptions);
 
 
 implementation
@@ -384,62 +384,61 @@ uses
 {========================================
   Wrapper functions
 ========================================}
-procedure NLDEnumFiles(Path: string; CallBack: TNLDFoundFileProc;
-                       Options: TFSOptions);
+procedure NLDEnumFiles(APath: string; CallBack: TNLDFoundFileProc; AOptions:
+    TFSOptions);
 begin
   with TNLDEnumFiles.Create do
   try
     FoundFileProc := CallBack;
-    EnumFiles(Path, Options);
+    EnumFiles(APath, AOptions);
   finally
     Free;
   end;
 end;
 
-procedure NLDEnumFiles(Path: string; CallBack: TNLDFoundFileEvent;
-                       Options: TFSOptions);
+procedure NLDEnumFiles(APath: string; CallBack: TNLDFoundFileEvent; AOptions:
+    TFSOptions);
 begin
   with TNLDEnumFiles.Create do
   try
     OnFoundFile := CallBack;
-    EnumFiles(Path, Options);
+    EnumFiles(APath, AOptions);
   finally
     Free;
   end;
 end;
 
-procedure NLDEnumFiles(Path: string; CallBack: TNLDFoundFileExProc;
-                       Options: TFSOptions);
+procedure NLDEnumFiles(APath: string; CallBack: TNLDFoundFileExProc; AOptions:
+    TFSOptions);
 begin
   with TNLDEnumFiles.Create do
   try
     FoundFileProcEx := CallBack;
-    EnumFiles(Path, Options);
+    EnumFiles(APath, AOptions);
   finally
     Free;
   end;
 end;
 
-procedure NLDEnumFiles(Path: string; CallBack: TNLDFoundFileExEvent;
-                       Options: TFSOptions);
+procedure NLDEnumFiles(APath: string; CallBack: TNLDFoundFileExEvent; AOptions:
+    TFSOptions);
 begin
   with TNLDEnumFiles.Create do
   try
     OnFoundFileEx := CallBack;
-    EnumFiles(Path, Options);
+    EnumFiles(APath, AOptions);
   finally
     Free;
   end;
 end;
 
-procedure NLDGetFiles(Path: string; List: TStrings;
-                      Options: TFSOptions);
+procedure NLDGetFiles(APath: string; List: TStrings; AOptions: TFSOptions);
 begin
   List.Clear;
   with TNLDStringsFileSearch.Create do
   try
     Strings := List;
-    EnumFiles(Path, Options);
+    EnumFiles(APath, AOptions);
   finally
     Free;
   end;
@@ -734,7 +733,7 @@ end;
 procedure TNLDFileSearch.Search();
 begin
   if not DirectoryExists(FPath) then
-    raise EFOpenError.Create('The specified Path does not exist!');
+    raise Exception.Create('The specified Path does not exist!');
 
   EnumFiles(FPath + FMask, FOptions);
 end;
